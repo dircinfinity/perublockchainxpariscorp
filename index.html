@@ -43,22 +43,11 @@
         position: fixed;
         inset: 0;
         z-index: -2;
-        background:
-          linear-gradient(180deg, rgba(0, 10, 35, 0.35), rgba(0, 8, 25, 0.55)),
-          url("https://res.cloudinary.com/njktrpgc/image/upload/v1783369580/FONDO%20PARIS.png");
+        background: url("https://res.cloudinary.com/njktrpgc/image/upload/v1783369580/FONDO%20PARIS.png");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         transform: translateZ(0);
-      }
-
-      body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background: radial-gradient(circle at center, rgba(0, 216, 255, 0.10), rgba(0, 0, 0, 0.22));
-        pointer-events: none;
       }
 
       .layout {
@@ -76,28 +65,13 @@
         max-width: 520px;
         position: relative;
         padding: 26px 20px 24px;
-        border: 1px solid var(--borde-glass);
+        border: 1px solid rgba(255, 255, 255, 0.28);
         border-radius: 28px;
-        background:
-          linear-gradient(180deg, rgba(4, 26, 78, 0.45), rgba(1, 12, 40, 0.55));
-        box-shadow:
-          0 28px 80px rgba(0, 0, 0, 0.5),
-          inset 0 0 34px rgba(0, 216, 255, 0.08);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(18px) saturate(140%);
+        -webkit-backdrop-filter: blur(18px) saturate(140%);
         overflow: hidden;
-      }
-
-      .contenedor::before {
-        content: "";
-        position: absolute;
-        top: -90px;
-        left: 50%;
-        width: 280px;
-        height: 280px;
-        transform: translateX(-50%);
-        background: radial-gradient(circle, rgba(0, 216, 255, 0.34), transparent 62%);
-        pointer-events: none;
       }
 
       .contenido {
