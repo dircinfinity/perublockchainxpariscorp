@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Registro Evento</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        background: #ffffff;
+      }
+
+      body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        overflow-x: hidden;
+      }
+
+      .contenedor {
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        background: #ffffff;
+        padding: 34px 22px 42px;
+      }
+
+      .logo-texto {
+        text-align: center;
+        font-size: 17px;
+        color: #0057b8;
+        font-weight: bold;
+        letter-spacing: 1.4px;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #002855;
+        font-size: 34px;
+        margin: 0 0 14px;
+        line-height: 1.1;
+      }
+
+      .subtitulo {
+        text-align: center;
+        color: #555;
+        font-size: 19px;
+        margin: 0 0 34px;
+        line-height: 1.35;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 9px;
+        color: #222;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 19px 16px;
+        border: 1.5px solid #ccc;
+        border-radius: 16px;
+        margin-bottom: 8px;
+        font-size: 18px;
+        min-height: 64px;
+        background: #ffffff;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: #0057b8;
+        outline: none;
+      }
+
+      .campo-error {
+        border-color: #c00000 !important;
+        background: #fff6f6;
+      }
+
+      .texto-error {
+        color: #c00000;
+        font-size: 15px;
+        margin-bottom: 16px;
+        display: none;
+        line-height: 1.3;
+      }
+
+      .pantalla {
+        display: none;
+      }
+
+      .pantalla.activa {
+        display: block;
+      }
+
+      .grupo-whatsapp {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .grupo-whatsapp select {
+        width: 42%;
+      }
+
+      .grupo-whatsapp input {
+        width: 58%;
+      }
+
+      .opcion {
+        border: 1.5px solid #ddd;
+        border-radius: 16px;
+        padding: 20px 16px;
+        margin-bottom: 14px;
+        cursor: pointer;
+        font-size: 18px;
+        color: #222;
+        background: #f8f8f8;
+        line-height: 1.25;
+      }
+
+      .opcion.seleccionada {
+        border-color: #0057b8;
+        background: #dcecff;
+        font-weight: bold;
+      }
+
+      .check {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin: 24px 0;
+        font-size: 15px;
+        color: #444;
+        line-height: 1.25;
+      }
+
+      .check input {
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        flex: 0 0 auto;
+      }
+
+      button {
+        width: 100%;
+        padding: 21px;
+        background: #0057b8;
+        color: white;
+        border: none;
+        border-radius: 16px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        min-height: 68px;
+      }
+
+      button:disabled {
+        background: #999;
+        cursor: not-allowed;
+      }
+
+      .volver {
+        background: #e5e5e5;
+        color: #222;
+        margin-top: 12px;
+      }
+
+      .mensaje-error {
+        color: #c00000;
+        font-size: 16px;
+        text-align: center;
+        margin-top: 14px;
+        display: none;
+        line-height: 1.3;
+      }
+
+      .mensaje-ok {
+        text-align: center;
+        color: #002855;
+        padding-top: 80px;
+      }
+
+      .mensaje-ok h2 {
+        font-size: 36px;
+        margin-bottom: 14px;
+        line-height: 1.1;
+      }
+
+      .mensaje-ok p {
+        font-size: 20px;
+        color: #555;
+        line-height: 1.35;
+      }
+
+      @media (min-width: 700px) {
+        .contenedor {
+          max-width: 640px;
+          margin: 0 auto;
+          padding: 46px 42px 56px;
+        }
+
+        .logo-texto {
+          font-size: 18px;
+        }
+
+        h1 {
+          font-size: 40px;
+        }
+
+        .subtitulo {
+          font-size: 22px;
+        }
+
+        label {
+          font-size: 20px;
+        }
+
+        input,
+        select {
+          font-size: 21px;
+          min-height: 72px;
+          padding: 22px 18px;
+        }
+
+        .opcion {
+          font-size: 21px;
+          padding: 22px 18px;
+        }
+
+        .check {
+          font-size: 18px;
+        }
+
+        button {
+          font-size: 22px;
+          min-height: 74px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="contenedor">
+
+      <div class="logo-texto">PARISCORP</div>
+
+      <div id="pantalla1" class="pantalla activa">
+        <h1>Registro del evento</h1>
+        <p class="subtitulo">Completa tus datos para participar en nuestra dinámica.</p>
+
+        <label>Nombre completo</label>
+        <input type="text" id="nombre" placeholder="Escribe tu nombre completo" onblur="formatearNombre()">
+        <div id="errorNombre" class="texto-error"></div>
+
+        <label>Número de WhatsApp</label>
+
+        <div class="grupo-whatsapp">
+          <select id="codigoPais">
+            <option value="+51" data-digitos="9">PE +51</option>
+
+            <option value="+54" data-digitos="10">AR +54</option>
+            <option value="+591" data-digitos="8">BO +591</option>
+            <option value="+55" data-digitos="11">BR +55</option>
+            <option value="+56" data-digitos="9">CL +56</option>
+            <option value="+57" data-digitos="10">CO +57</option>
+            <option value="+593" data-digitos="9">EC +593</option>
+            <option value="+592" data-digitos="7">GY +592</option>
+            <option value="+594" data-digitos="9">GF +594</option>
+            <option value="+595" data-digitos="9">PY +595</option>
+            <option value="+597" data-digitos="7">SR +597</option>
+            <option value="+598" data-digitos="8">UY +598</option>
+            <option value="+58" data-digitos="10">VE +58</option>
+
+            <option value="+1" data-digitos="10">US +1</option>
+            <option value="+1" data-digitos="10">CA +1</option>
+            <option value="+52" data-digitos="10">MX +52</option>
+
+            <option value="+501" data-digitos="7">BZ +501</option>
+            <option value="+502" data-digitos="8">GT +502</option>
+            <option value="+503" data-digitos="8">SV +503</option>
+            <option value="+504" data-digitos="8">HN +504</option>
+            <option value="+505" data-digitos="8">NI +505</option>
+            <option value="+506" data-digitos="8">CR +506</option>
+            <option value="+507" data-digitos="8">PA +507</option>
+
+            <option value="+1" data-digitos="10">DO +1</option>
+            <option value="+1" data-digitos="10">PR +1</option>
+            <option value="+53" data-digitos="8">CU +53</option>
+            <option value="+509" data-digitos="8">HT +509</option>
+            <option value="+1" data-digitos="10">JM +1</option>
+            <option value="+1" data-digitos="10">TT +1</option>
+          </select>
+
+          <input type="tel" id="whatsapp" placeholder="987654321" oninput="limpiarTelefono()">
+        </div>
+
+        <div id="errorWhatsapp" class="texto-error"></div>
+
+        <label>Correo electrónico</label>
+        <input type="email" id="correo" placeholder="ejemplo@correo.com" onblur="formatearCorreo()">
+        <div id="errorCorreo" class="texto-error"></div>
+
+        <button onclick="irPantallaIntereses()">Continuar</button>
+
+        <div id="error1" class="mensaje-error"></div>
+      </div>
+
+      <div id="pantalla2" class="pantalla">
+        <h1>¿Qué te interesa conocer más?</h1>
+        <p class="subtitulo">Selecciona hasta 2 opciones.</p>
+
+        <div class="opcion opcion-interes" data-interes="Generar ganancias de un 5% a 6% mensualmente" onclick="seleccionarInteres(this)">
+          Generar ganancias de un 5% a 6% mensualmente
+        </div>
+
+        <div class="opcion opcion-interes" data-interes="Aprender sobre Trading en mercados financieros" onclick="seleccionarInteres(this)">
+          Aprender sobre Trading en mercados financieros
+        </div>
+
+        <div class="opcion opcion-interes" data-interes="Mejorar mi salud" onclick="seleccionarInteres(this)">
+          Mejorar mi salud
+        </div>
+
+        <div class="opcion opcion-interes" data-interes="Viajar por el mundo usando cripto" onclick="seleccionarInteres(this)">
+          Viajar por el mundo usando cripto
+        </div>
+
+        <div class="check">
+          <input type="checkbox" id="acepta">
+          <span>Acepto que la corporación pueda contactarme por WhatsApp, llamada o correo para brindarme más información.</span>
+        </div>
+
+        <button id="btnEnviar" onclick="enviarRegistro()">Enviar registro</button>
+        <button class="volver" onclick="volverPantallaDatos()">Volver</button>
+
+        <div id="error2" class="mensaje-error"></div>
+      </div>
+
+      <div id="pantalla3" class="pantalla">
+        <div class="mensaje-ok">
+          <h2>¡Registro completado!</h2>
+          <p>Gracias por participar.</p>
+          <p>Acércate a nuestro equipo para continuar con la dinámica del stand.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbx1v7z761x8SdJhkTNzhknJ6biH4fhSOynjXlBorLcakiIN-iWIG6BkF_ctiUOijb83/exec";
+
+      let interesesSeleccionados = [];
+
+      function mostrarError(idCampo, idError, mensaje) {
+        const campo = document.getElementById(idCampo);
+        const error = document.getElementById(idError);
+
+        campo.classList.add("campo-error");
+        error.innerText = mensaje;
+        error.style.display = "block";
+      }
+
+      function limpiarError(idCampo, idError) {
+        const campo = document.getElementById(idCampo);
+        const error = document.getElementById(idError);
+
+        campo.classList.remove("campo-error");
+        error.innerText = "";
+        error.style.display = "none";
+      }
+
+      function capitalizarTexto(texto) {
+        return texto
+          .toLowerCase()
+          .split(" ")
+          .filter(palabra => palabra.trim() !== "")
+          .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+          .join(" ");
+      }
+
+      function formatearNombre() {
+        const campoNombre = document.getElementById("nombre");
+        campoNombre.value = capitalizarTexto(campoNombre.value.trim());
+      }
+
+      function formatearCorreo() {
+        const campoCorreo = document.getElementById("correo");
+        campoCorreo.value = campoCorreo.value.trim().toLowerCase();
+      }
+
+      function limpiarTelefono() {
+        const campoWhatsapp = document.getElementById("whatsapp");
+        campoWhatsapp.value = campoWhatsapp.value.replace(/\D/g, "");
+      }
+
+      function obtenerCodigoPaisNumerico() {
+        const codigoPais = document.getElementById("codigoPais").value;
+        return codigoPais.replace(/\D/g, "");
+      }
+
+      function obtenerCantidadDigitosPais() {
+        const select = document.getElementById("codigoPais");
+        const opcionSeleccionada = select.options[select.selectedIndex];
+        return Number(opcionSeleccionada.getAttribute("data-digitos"));
+      }
+
+      function normalizarNumeroLocal() {
+        const campoWhatsapp = document.getElementById("whatsapp");
+        const codigoPaisNumerico = obtenerCodigoPaisNumerico();
+
+        let numero = campoWhatsapp.value.replace(/\D/g, "");
+
+        if (numero.startsWith("00" + codigoPaisNumerico)) {
+          numero = numero.substring(("00" + codigoPaisNumerico).length);
+        }
+
+        if (numero.startsWith(codigoPaisNumerico) && numero.length > obtenerCantidadDigitosPais()) {
+          numero = numero.substring(codigoPaisNumerico.length);
+        }
+
+        campoWhatsapp.value = numero;
+        return numero;
+      }
+
+      function validarNombre() {
+        const nombre = document.getElementById("nombre").value.trim();
+
+        limpiarError("nombre", "errorNombre");
+
+        if (nombre === "") {
+          mostrarError("nombre", "errorNombre", "Ingresa tu nombre completo.");
+          return false;
+        }
+
+        if (nombre.split(" ").length < 2) {
+          mostrarError("nombre", "errorNombre", "Ingresa nombre y apellido.");
+          return false;
+        }
+
+        if (/\d/.test(nombre)) {
+          mostrarError("nombre", "errorNombre", "El nombre no debe contener números.");
+          return false;
+        }
+
+        if (nombre.length < 5) {
+          mostrarError("nombre", "errorNombre", "El nombre parece demasiado corto. Revisa el dato ingresado.");
+          return false;
+        }
+
+        return true;
+      }
+
+      function validarWhatsapp() {
+        const whatsapp = normalizarNumeroLocal();
+        const digitosEsperados = obtenerCantidadDigitosPais();
+
+        limpiarError("whatsapp", "errorWhatsapp");
+
+        if (whatsapp === "") {
+          mostrarError("whatsapp", "errorWhatsapp", "Ingresa tu número de WhatsApp.");
+          return false;
+        }
+
+        if (!/^\d+$/.test(whatsapp)) {
+          mostrarError("whatsapp", "errorWhatsapp", "El número solo debe contener dígitos.");
+          return false;
+        }
+
+        if (whatsapp.length !== digitosEsperados) {
+          mostrarError(
+            "whatsapp",
+            "errorWhatsapp",
+            "El número debe tener " + digitosEsperados + " dígitos para el país seleccionado. Revisa el dato ingresado."
+          );
+          return false;
+        }
+
+        return true;
+      }
+
+      function validarCorreo() {
+        const correo = document.getElementById("correo").value.trim();
+
+        limpiarError("correo", "errorCorreo");
+
+        if (correo === "") {
+          mostrarError("correo", "errorCorreo", "Ingresa tu correo electrónico.");
+          return false;
+        }
+
+        const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!formatoCorreo.test(correo)) {
+          mostrarError("correo", "errorCorreo", "Ingresa un correo válido. Ejemplo: nombre@correo.com.");
+          return false;
+        }
+
+        return true;
+      }
+
+      function irPantallaIntereses() {
+        formatearNombre();
+        formatearCorreo();
+        limpiarTelefono();
+
+        const nombreOk = validarNombre();
+        const whatsappOk = validarWhatsapp();
+        const correoOk = validarCorreo();
+
+        if (!nombreOk || !whatsappOk || !correoOk) {
+          return;
+        }
+
+        document.getElementById("pantalla1").classList.remove("activa");
+        document.getElementById("pantalla2").classList.add("activa");
+      }
+
+      function volverPantallaDatos() {
+        document.getElementById("pantalla2").classList.remove("activa");
+        document.getElementById("pantalla1").classList.add("activa");
+      }
+
+      function seleccionarInteres(elemento) {
+        const error = document.getElementById("error2");
+        const interes = elemento.getAttribute("data-interes");
+
+        error.style.display = "none";
+
+        if (interesesSeleccionados.includes(interes)) {
+          interesesSeleccionados = interesesSeleccionados.filter(item => item !== interes);
+          elemento.classList.remove("seleccionada");
+          return;
+        }
+
+        if (interesesSeleccionados.length >= 2) {
+          error.innerText = "Solo puedes seleccionar hasta 2 opciones.";
+          error.style.display = "block";
+          return;
+        }
+
+        interesesSeleccionados.push(interes);
+        elemento.classList.add("seleccionada");
+      }
+
+      function enviarRegistro() {
+        const error = document.getElementById("error2");
+        const acepta = document.getElementById("acepta").checked;
+        const boton = document.getElementById("btnEnviar");
+
+        error.style.display = "none";
+
+        if (interesesSeleccionados.length === 0) {
+          error.innerText = "Selecciona al menos una opción de interés.";
+          error.style.display = "block";
+          return;
+        }
+
+        if (!acepta) {
+          error.innerText = "Debes aceptar el contacto para completar el registro.";
+          error.style.display = "block";
+          return;
+        }
+
+        boton.disabled = true;
+        boton.innerText = "Guardando...";
+
+        const codigoPais = document.getElementById("codigoPais").value;
+        const numero = normalizarNumeroLocal();
+        const whatsappCompleto = codigoPais + numero;
+
+        const datos = {
+          nombre: document.getElementById("nombre").value.trim(),
+          whatsapp: whatsappCompleto,
+          correo: document.getElementById("correo").value.trim(),
+          interes: interesesSeleccionados[0],
+          interesSecundario: interesesSeleccionados[1] || "",
+          aceptaContacto: "Sí"
+        };
+
+        fetch(ENDPOINT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(datos)
+        })
+        .then(function() {
+          document.getElementById("pantalla2").classList.remove("activa");
+          document.getElementById("pantalla3").classList.add("activa");
+        })
+        .catch(function() {
+          boton.disabled = false;
+          boton.innerText = "Enviar registro";
+          error.innerText = "No se pudo enviar el registro. Revisa tu conexión e intenta nuevamente.";
+          error.style.display = "block";
+        });
+      }
+    </script>
+  </body>
+</html>
