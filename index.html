@@ -44,7 +44,7 @@
         inset: 0;
         z-index: -2;
         background:
-          linear-gradient(180deg, rgba(0, 10, 35, 0.55), rgba(0, 8, 25, 0.92)),
+          linear-gradient(180deg, rgba(0, 10, 35, 0.35), rgba(0, 8, 25, 0.55)),
           url("https://res.cloudinary.com/njktrpgc/image/upload/v1783369580/FONDO%20PARIS.png");
         background-size: cover;
         background-position: center;
@@ -79,7 +79,7 @@
         border: 1px solid var(--borde-glass);
         border-radius: 28px;
         background:
-          linear-gradient(180deg, rgba(4, 26, 78, 0.82), rgba(1, 12, 40, 0.84));
+          linear-gradient(180deg, rgba(4, 26, 78, 0.45), rgba(1, 12, 40, 0.55));
         box-shadow:
           0 28px 80px rgba(0, 0, 0, 0.5),
           inset 0 0 34px rgba(0, 216, 255, 0.08);
@@ -869,15 +869,33 @@
 
         fetch(ENDPOINT_URL, {
           method: "POST",
-          mode: "no-cors",
           headers: {
             "Content-Type": "text/plain;charset=utf-8"
           },
           body: JSON.stringify(datos)
         })
-        .then(function() {
-          document.getElementById("pantalla2").classList.remove("activa");
-          document.getElementById("pantalla3").classList.add("activa");
+        .then(function(respuesta) {
+          return respuesta.text();
+        })
+        .then(function(texto) {
+          if (texto.indexOf("OK") === 0) {
+            document.getElementById("pantalla2").classList.remove("activa");
+            document.getElementById("pantalla3").classList.add("activa");
+            return;
+          }
+
+          boton.disabled = false;
+          boton.innerText = "Enviar registro";
+
+          if (texto.indexOf("DUPLICADO") === 0) {
+            error.innerText = texto.replace("DUPLICADO: ", "");
+          } else if (texto.indexOf("ERROR") === 0) {
+            error.innerText = "No pudimos completar tu registro. Verifica tus datos e intenta nuevamente.";
+          } else {
+            error.innerText = "No se pudo enviar el registro. Revisa tu conexión e intenta nuevamente.";
+          }
+
+          error.style.display = "block";
         })
         .catch(function() {
           boton.disabled = false;
