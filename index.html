@@ -373,6 +373,58 @@
         line-height: 1.48;
       }
 
+      .redes-sociales {
+        margin-top: 26px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        text-align: center;
+      }
+
+      .redes-titulo {
+        margin: 0 0 6px;
+        font-size: 18px;
+        font-weight: 800;
+        color: #ffffff;
+      }
+
+      .redes-subtitulo {
+        margin: 0 auto 18px;
+        max-width: 340px;
+        color: var(--texto-suave);
+        font-size: 14.5px;
+        line-height: 1.42;
+      }
+
+      .redes-iconos {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .red-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 17px;
+        border: 1px solid rgba(255, 255, 255, 0.20);
+        background: rgba(255, 255, 255, 0.08);
+        transition: transform 0.15s ease, background 0.15s ease;
+      }
+
+      .red-link:active {
+        transform: scale(0.94);
+        background: rgba(255, 255, 255, 0.16);
+      }
+
+      .red-link img {
+        width: 30px;
+        height: 30px;
+        display: block;
+        object-fit: contain;
+      }
+
       .footer-mini {
         margin-top: 19px;
         text-align: center;
@@ -474,6 +526,29 @@
           min-height: 54px;
           font-size: 15.5px;
           padding: 15px;
+        }
+
+        .redes-sociales {
+          margin-top: 20px;
+          padding-top: 18px;
+        }
+
+        .redes-titulo {
+          font-size: 16.5px;
+        }
+
+        .redes-subtitulo {
+          font-size: 13.5px;
+        }
+
+        .red-link {
+          width: 52px;
+          height: 52px;
+        }
+
+        .red-link img {
+          width: 26px;
+          height: 26px;
         }
       }
     </style>
@@ -601,6 +676,19 @@
               <div class="icono-ok">✓</div>
               <h2>¡Registro completado!</h2>
               <p>Gracias por registrarte. La oportunidad de transformar tu futuro puede empezar hoy.</p>
+            </div>
+
+            <div class="redes-sociales">
+              <p class="redes-titulo">No te quedes fuera de la comunidad</p>
+              <p class="redes-subtitulo">Síguenos y entérate primero de nuevas oportunidades, eventos y contenido exclusivo de Pariscorp.</p>
+              <div class="redes-iconos">
+                <a class="red-link" href="https://www.instagram.com/pariscorp.holding?igsh=cm9hYnpncnMxenM2" target="_blank" rel="noopener" aria-label="Instagram Pariscorp">
+                  <img src="https://res.cloudinary.com/njktrpgc/image/upload/v1783440782/instagram-paris_qocm5b.png" alt="Instagram">
+                </a>
+                <a class="red-link" href="https://www.facebook.com/share/1GwQ8xnJGT/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook Pariscorp">
+                  <img src="https://res.cloudinary.com/njktrpgc/image/upload/v1783440782/facebook-paris_crdnhi.png" alt="Facebook">
+                </a>
+              </div>
             </div>
           </div>
 
